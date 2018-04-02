@@ -1,0 +1,20 @@
+{
+  "name": "weatherforecast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "react": "^16.3.0",
+    "react-redux": "^5.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"\"\u001b[Maxim",
+  "license": "ISC"
+}
