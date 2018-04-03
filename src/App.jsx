@@ -1,18 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import * as s from './App.css';
+import WeatherPage from'./components/WeatherPage';
 
 export default class App extends React.Component {
     render() {
         return (
             <div className={s.mainContent}>
-                aaabbb
+                <WeatherPage/>
             </div>
         );
     }
 }
-
-ReactDOM.render(
-    <App/>,
-    document.getElementById('app')
-);

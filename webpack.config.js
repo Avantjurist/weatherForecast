@@ -6,7 +6,7 @@ module.exports = {
 
     context: path.resolve(__dirname, 'src'),
 
-    entry: './App',
+    entry: './Index',
 
     output: {
         filename: 'bundle.js',
@@ -15,6 +15,10 @@ module.exports = {
 
     resolve: {
         extensions: ['.js', '.jsx']
+    },
+
+    devServer: {
+        historyApiFallback: true
     },
 
     mode: 'none',
@@ -36,12 +40,6 @@ module.exports = {
                             camelCase: true,
                             localIdentName: '[path][name]__[local]--[hash:base64:5]'
                         }
-                    }, {
-                        loader: 'typed-css-modules-loader',
-                        options: {
-                            camelCase: true,
-                            outDir: './built/css-modules'
-                        },
                     }
                 ]
             }
