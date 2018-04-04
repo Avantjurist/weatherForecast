@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class SeachForm extends React.Component {
+class SeachForm extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             value: ''
         }
@@ -13,11 +14,21 @@ export default class SeachForm extends React.Component {
         this.setState({
             value: event.target.value
         })
-    }
+    };
+
+    handleClick = () => {
+        this.props.history.push("/search/" + this.state.value)
+    };
 
     render() {
         return (
-            <input type="text" value={this.state.value} onChange={this.handleChange}/>
+            <form action="">
+                <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                <button onClick={this.handleClick}>Search</button>
+            </form>
         )
     }
 }
+
+export default withRouter(SeachForm)
+

@@ -9,7 +9,7 @@ export default class WeatherPage extends React.Component {
         return (
             <div>
                 <SearchForm/>
-                <Route path="/table" component={ ResultTable } />
+                <Route path="/search/:city" component={ ResultTable } />
             </div>
         )
     }
