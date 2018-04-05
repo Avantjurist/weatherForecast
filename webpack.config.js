@@ -19,7 +19,16 @@ module.exports = {
     },
 
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://api.openweathermap.org',
+        //         secure: false,
+        //         pathRewrite: {
+        //             '^/api': ''
+        //         }
+        //     }
+        // },//why i need use that?
     },
 
     mode: 'none',

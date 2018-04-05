@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { itemsFetchData} from '../../actions/index';
 
 class SeachForm extends React.Component {
 
@@ -18,11 +20,12 @@ class SeachForm extends React.Component {
 
     handleClick = () => {
         this.props.history.push("/search/" + this.state.value)
+        this.props.fetchData(this.state.value)
     };
 
     render() {
         return (
-            <form action="">
+            <form onSubmit={e=>e.preventDefault()}>
                 <input type="text" value={this.state.value} onChange={this.handleChange}/>
                 <button onClick={this.handleClick}>Search</button>
             </form>
@@ -30,5 +33,11 @@ class SeachForm extends React.Component {
     }
 }
 
-export default withRouter(SeachForm)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (cityName) => dispatch(itemsFetchData(cityName))
+    }
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(SeachForm));
 

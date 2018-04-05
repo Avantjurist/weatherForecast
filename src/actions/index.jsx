@@ -1,7 +1,6 @@
 export const ITEMS_HAS_ERROR = 'ITEMS_HAS_ERROR';
 export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
 export const ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS';
-const url = "http://samples.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=50935e47e3e45ae199d389882ea6c955";
 
 export const itemsHasError = (bool) => {
     return {
@@ -24,23 +23,26 @@ export const itemsFetchDataSuccess = (items) => {
     }
 };
 
-export const itemsFetchData = (url) => {
+export const itemsFetchData = (cityName) => {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 
-        fetch(url)
-            .than((response) => {
-            if(!response.ok) {
-                throw Error(response.statusText);
-            }
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&sensor&key=AIzaSyByRLaRXM-A475vdODYdnICl-K0O2tbyd4`)
+            .then((response) => {
 
-            dispatch(itemsIsLoading(false));
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
 
-            return response
+                dispatch(itemsIsLoading(false));
+                return response
             })
-            .than((response) => response.json())
-            .than((items) => dispatch.itemsFetchDataSuccess(items))
+            .then((response) => response.json())
+            .then((items) =>
+                fetch(`https://api.openweathermap.org/data/2.5/find?lat=${items.results[0].geometry.location.lat}&lon=${items.results[0].geometry.location.lng}&cnt=20&appid=50935e47e3e45ae199d389882ea6c955`)
+                    .then((response) => response.json())
+                    .then((items) => dispatch(itemsFetchDataSuccess(items.list)))
+            )
             .catch(() => dispatch(itemsHasError(true)))
-
     }
 }
