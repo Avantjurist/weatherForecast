@@ -1,3 +1,11 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #3aaae8;
+}
+
 .main-content {
-    background: red;
+    height: 100%;
+    padding: 50px 0;
 }

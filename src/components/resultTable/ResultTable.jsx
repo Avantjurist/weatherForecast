@@ -1,25 +1,41 @@
 import React from 'react';
 import ForecastItem from './forecastItem/ForecastItem';
-import { connect } from 'react-redux'
+import * as styles from './ResultTable.css';
+import { connect } from 'react-redux';
+import { itemsFetchData } from '../../actions/index';
 
 class ResultTable extends React.Component {
-    constructor() {
-        super();
-        this.state = { forecastItems: [{name: "a"}, {name: "b"}, {name: "c"}]}
+
+    componentWillMount() {
+        this.props.fetchData(this.props.match.params.city);
     }
 
     render() {
-        console.log("props with cities", this.props);
+        // if (this.props.hasErrored) {
+        //     return <p>Sorry! There was an error loading the items</p>;
+        // }
+        // if (this.props.isLoading) {
+        //     return <p>Loading…</p>;
+        // }
         return (
-            <ul>{this.props.cities.map((forecastItem) => <ForecastItem key={forecastItem.id} item={forecastItem}/>)}</ul>
-        )
+            <ul className={styles.citiesList}>
+                {this.props.cities.map((forecastItem) =>
+                    <ForecastItem key={forecastItem.id} item={forecastItem}/>)}
+            </ul>
+        );
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ cities }) => {
     return {
-        cities: state.cities
-    }
-}
+        cities,
+    };
+};
 
-export default connect(mapStateToProps)(ResultTable)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (cityName) => dispatch(itemsFetchData(cityName))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultTable);

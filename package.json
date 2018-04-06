@@ -5,7 +5,13 @@
   "main": "webpack.config.js",
   "dependencies": {
     "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13"
+    "webpack-cli": "^2.0.13",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -13,14 +19,14 @@
     "babel-loader": "^7.1.4",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^3.1.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
     "react-hot-loader": "^4.0.1",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
     "style-loader": "^0.20.3",
     "typed-css-modules-loader": "0.0.11",
     "webpack-dev-server": "^3.1.1"

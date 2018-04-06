@@ -23,23 +23,30 @@ export const itemsFetchDataSuccess = (items) => {
     }
 };
 
-export const itemsFetchData = (cityName) => {
+export const itemsFetchData = (cityName="") => {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&sensor&key=AIzaSyByRLaRXM-A475vdODYdnICl-K0O2tbyd4`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=50935e47e3e45ae199d389882ea6c955`)
             .then((response) => {
-
+                dispatch(itemsIsLoading(false));
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-
-                dispatch(itemsIsLoading(false));
+                dispatch(itemsHasError(false));
                 return response
             })
             .then((response) => response.json())
             .then((items) =>
-                fetch(`https://api.openweathermap.org/data/2.5/find?lat=${items.results[0].geometry.location.lat}&lon=${items.results[0].geometry.location.lng}&cnt=20&appid=50935e47e3e45ae199d389882ea6c955`)
+                fetch(`https://api.openweathermap.org/data/2.5/find?lat=${items.coord.lat}&lon=${items.coord.lon}&cnt=20&appid=50935e47e3e45ae199d389882ea6c955`)
+                    .then((response) => {
+                        dispatch(itemsIsLoading(false));
+                        if (!response.ok) {
+                            throw Error(response.statusText);
+                        }
+                        dispatch(itemsHasError(false));
+                        return response
+                    })
                     .then((response) => response.json())
                     .then((items) => dispatch(itemsFetchDataSuccess(items.list)))
             )

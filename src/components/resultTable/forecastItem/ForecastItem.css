@@ -1,0 +1,15 @@
+.city-data {
+    display: flex;
+    margin: 10px 0;
+}
+.temp {
+    background-color: #000;
+    color: #fff;
+}
+
+.city-name {
+    background-color: #E8D024;
+    color: #fff;
+    min-width: 140px;
+    text-align: center;
+}
