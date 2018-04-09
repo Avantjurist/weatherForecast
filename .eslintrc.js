@@ -1,3 +1,4 @@
+// ToDo: Add this file to rendering-engine-core and remove eslint packages from package.json
 module.exports = {
     root: true,
     env: {
@@ -6,6 +7,7 @@ module.exports = {
         jest: true,
     },
     extends: ['airbnb'],
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaVersion: 7,
         sourceType: 'module',
@@ -61,17 +63,19 @@ module.exports = {
         'react/no-array-index-key': 0,
         'react/jsx-max-props-per-line': ['error', { maximum: 1 }],
         'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': ['error', 2],
+        'react/jsx-indent-props': ['error', 4],
         'react/require-default-props': 'off',
         'react/forbid-prop-types': ['error'],
         'react/prefer-stateless-function': ['off', { ignorePureComponents: true }],
-        'react/prop-types': [
-            'error',
-            {
-                ignore: ['children', 'location', 'props'],
-                customValidators: [],
-            },
-        ],
+        'react/prop-types': 'off'
+        // 'react/prop-types': [
+        //     'error',
+        //     {
+        //         ignore: ['children', 'location', 'props'],
+        //         customValidators: [],
+        //     },
+        // ], need add prop types
+
     },
     settings: {
         'import/resolver': {
@@ -84,13 +88,5 @@ module.exports = {
                 },
             },
         },
-    },
-    globals: {
-        DEBUG: false,
-        TEST: false,
-        __DEV__: true,
-        __WATCH__: true,
-        __BROWSER__: true,
-        __USE_EK_STYLES__: true,
     },
 };

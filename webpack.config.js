@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
 
@@ -10,12 +9,12 @@ module.exports = {
 
     output: {
         filename: 'bundle.js',
-        path:  path.resolve(__dirname, 'built'),
-        publicPath: '/'
+        path: path.resolve(__dirname, 'built'),
+        publicPath: '/',
     },
 
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
     },
 
     devServer: {
@@ -38,7 +37,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
             }, {
                 test: /\.css?$/,
                 use: [
@@ -48,21 +47,21 @@ module.exports = {
                         options: {
                             modules: true,
                             camelCase: true,
-                            localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                        }
-                    }
-                ]
-            }
-        ]
+                            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                        },
+                    },
+                ],
+            },
+        ],
     },
 
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Test',
             hash: true,
-            template: "index.html"
-        })
+            template: 'index.html',
+        }),
     ],
 
-    watch: true
+    watch: true,
 };
