@@ -1,10 +1,15 @@
-export const ITEMS_HAS_ERROR = 'ITEMS_HAS_ERROR';
 export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
 export const ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS';
+export const ADD_ERROR = 'ADD_ERROR';
+export const CLEAN_ERROR = 'CLEAN_ERROR';
 
-export const itemsHasError = bool => ({
-    type: ITEMS_HAS_ERROR,
-    hasError: bool,
+export const addError = error => ({
+    type: ADD_ERROR,
+    error,
+});
+
+export const cleanError = () => ({
+    type: CLEAN_ERROR,
 });
 
 export const itemsIsLoading = bool => ({
@@ -23,9 +28,8 @@ export const itemsFetchData = (cityName = '') => (dispatch => {
         .then(response => {
             dispatch(itemsIsLoading(false));
             if (!response.ok) {
-                throw Error(response.statusText);
+                dispatch(addError(response.status));
             }
-            dispatch(itemsHasError(false));
             return response;
         })
         .then(response => response.json())
@@ -36,11 +40,10 @@ export const itemsFetchData = (cityName = '') => (dispatch => {
                     if (!response.ok) {
                         throw Error(response.statusText);
                     }
-                    dispatch(itemsHasError(false));
                     return response;
                 })
                 .then(response => response.json())
                 .then(cities => dispatch(itemsFetchDataSuccess(cities.list)))
         )
-        .catch(() => dispatch(itemsHasError(true)));
+        .catch(response => { console.log(response.massege); });
 });

@@ -18,7 +18,7 @@ module.exports = {
     plugins: ['react', 'jsx-a11y', 'import'],
     rules: {
         'react/jsx-filename-extension': 0,
-        indent: ['error', 4],
+        indent: ['error', 4, { "SwitchCase": 1 }],
         'import/prefer-default-export': 'off',
         'import/no-extraneous-dependencies': 'off',
         'jsx-a11y/label-has-for': 'off',

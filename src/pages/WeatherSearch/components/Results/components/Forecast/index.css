@@ -5,6 +5,8 @@
 .temp {
     background-color: #000;
     color: #fff;
+    min-width: 35px;
+    text-align: center;
 }
 
 .city-name {

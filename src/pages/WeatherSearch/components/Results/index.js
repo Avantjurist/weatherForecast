@@ -12,7 +12,7 @@ class ResultTable extends Component {
     render() {
         return (
             <ul className={styles.citiesList}>
-                {this.props.cities.map(forecastItem =>
+                {this.props.forecasts.map(forecastItem =>
                     (<ForecastItem
                         key={forecastItem.id}
                         item={forecastItem}
@@ -22,7 +22,7 @@ class ResultTable extends Component {
     }
 }
 
-const mapStateToProps = ({ cities }) => ({ cities });// state => {cities:state.cities}
+const mapStateToProps = ({ forecasts }) => ({ forecasts });// state => {forecasts:state.forecasts}
 
 const mapDispatchToProps = dispatch => ({
     fetchData: cityName => dispatch(itemsFetchData(cityName)),
