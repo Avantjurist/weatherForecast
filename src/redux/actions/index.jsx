@@ -28,7 +28,7 @@ export const itemsFetchData = (cityName = '') => (dispatch => {
         .then(response => {
             dispatch(itemsIsLoading(false));
             if (!response.ok) {
-                dispatch(addError(response.status));
+                throw response;
             }
             return response;
         })
@@ -45,5 +45,5 @@ export const itemsFetchData = (cityName = '') => (dispatch => {
                 .then(response => response.json())
                 .then(cities => dispatch(itemsFetchDataSuccess(cities.list)))
         )
-        .catch(response => { console.log(response.massege); });
+        .catch(response => dispatch(addError(response)));
 });

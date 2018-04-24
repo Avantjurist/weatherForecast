@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test ErrorModalWindow should render correctly 1`] = `""`;
+
+exports[`test ErrorModalWindow should render correctly bla 1`] = `
+<div>
+  <div>
+    <div>
+      mock
+                             (cock)
+    </div>
+    <button
+      onClick={[Function]}
+    >
+      ok
+    </button>
+  </div>
+</div>
+`;
