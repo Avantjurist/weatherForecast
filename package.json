@@ -14,8 +14,6 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
-    "axios-mock-adapter": "^1.16.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",

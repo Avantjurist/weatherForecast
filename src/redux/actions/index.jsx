@@ -22,14 +22,14 @@ export const itemsFetchDataSuccess = items => ({
     items,
 });
 
-export const itemsFetchData = (cityName = '') => (dispatch => {
+export const itemsFetchData = cityName => (dispatch => {
     dispatch(itemsIsLoading(true));
     return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=50935e47e3e45ae199d389882ea6c955`)
         .then(response => {
             dispatch(itemsIsLoading(false));
-            // if (!response.ok) {
-            //     throw response;
-            // }
+            if (!response.ok) {
+                throw {status: response.status,  statusText: response.statusText};
+            }
             return response;
         })
         .then(response => response.json())
@@ -38,7 +38,7 @@ export const itemsFetchData = (cityName = '') => (dispatch => {
                 .then(response => {
                     dispatch(itemsIsLoading(false));
                     if (!response.ok) {
-                        throw Error(response.statusText);
+                        throw Error({status: response.status,  statusText: response.statusText});
                     }
                     return response;
                 })
