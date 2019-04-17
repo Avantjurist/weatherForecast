@@ -1,19 +1,41 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
 import ErrorModalWindow from './index.component';
 
-describe('test', () => {
-    it('ErrorModalWindow should render correctly', () => {
+describe('Error modal window', () => {
+
+    it('Render correctly ErrorModalWindow', () => {
+        const props = { "errors": [] };
         const output = shallow(
-            <ErrorModalWindow errors={[]} />
+            <ErrorModalWindow {...props} />
         );
-        expect(shallowToJson(output)).toMatchSnapshot();
+        expect(output).toMatchSnapshot();
+        expect(output.find("div")).toHaveLength(0);
+        expect(output.find("popup")).toHaveLength(0);
     });
-    it('ErrorModalWindow should render correctly bla', () => {
+
+    it('Render correctly ErrorModalWindow with props', () => {
         const output = shallow(
-            <ErrorModalWindow errors={[{status: 'mock', statusText: 'cock'}]} />
+            <ErrorModalWindow errors={[{ status: 'mock', statusText: 'status2', history: {} }]} />
         );
-        expect(shallowToJson(output)).toMatchSnapshot();
+        expect(output).toMatchSnapshot();
     });
+
+    it('call actions after click on the button', () => {
+        const mockCleanErrors = jest.fn(), mockGoBack = jest.fn();
+        const props = {
+            "errors": [{ status: 'mock', statusText: 'status2' }],
+            cleanErrors: mockCleanErrors,
+            history: { goBack: mockGoBack }
+        }
+        const output = shallow(
+            <ErrorModalWindow {...props} />
+        );
+
+        output.find('button').simulate('click', {
+          })
+
+        expect(mockCleanErrors).toHaveBeenCalledTimes(1);
+        expect(mockCleanErrors).toHaveBeenCalledTimes(1);
+    })
 });
